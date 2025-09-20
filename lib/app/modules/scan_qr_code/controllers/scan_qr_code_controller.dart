@@ -12,6 +12,7 @@ class ScanQrCodeController extends GetxController {
   String? result; // Your barcode result
   String? extractedEmail; // The variable to hold the extracted email
   QRViewController? controller;
+  QRViewController? qrViewController;
 
   // Handles hot reload for Android and iOS
 
@@ -39,7 +40,13 @@ class ScanQrCodeController extends GetxController {
     } catch (e) {
       log(e.toString());
     }
+    qrViewController = controller;
+    update();
   }
+
+  // void onQRViewCreated(QRViewController controller) {
+  //   // so flash button status updates
+  // }
 
   void extractEmailFromData(String? data) {
     final emailRegex = RegExp(

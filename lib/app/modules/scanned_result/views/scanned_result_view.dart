@@ -20,9 +20,16 @@ class ScannedResultView extends GetView<ScannedResultController> {
     log(" recieved from argument $scannedData");
     return GetBuilder<ScannedResultController>(
       builder: (controller) {
-        if (controller.result == null) {
-          return Scaffold(body: Center(child: Text(" No data")));
+        if (controller.isLoading == true) {
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(color: secondaryColour),
+            ),
+          );
+        } else if (controller.result == null) {
+          return Scaffold(body: Center(child: Text("no data")));
         } else {
+          
           return Scaffold(
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),

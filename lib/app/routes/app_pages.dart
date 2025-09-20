@@ -35,11 +35,15 @@ class AppPages {
       name: _Paths.SCAN_QR_CODE,
       page: () => const ScanQrCodeView(),
       binding: ScanQrCodeBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 400),
     ),
     GetPage(
       name: _Paths.SCANNED_RESULT,
       page: () => const ScannedResultView(),
       binding: ScannedResultBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 400),
     ),
   ];
 }

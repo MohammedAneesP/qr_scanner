@@ -65,23 +65,32 @@ class ScanQrCodeView extends GetView<ScanQrCodeController> {
                   ],
                 ),
               ),
+              SizedBox(height: Get.height * 0.02),
+              IconButton(
+                icon: FutureBuilder(
+                  future: controller.qrViewController?.getFlashStatus(),
+                  builder: (context, snapshot) {
+                    if (snapshot.data == true) {
+                      return Icon(
+                        Icons.flashlight_on,
+                        color: Colors.white,
+                        size: 40.sp,
+                      );
+                    } else {
+                      return Icon(
+                        Icons.flashlight_off,
+                        color: Colors.white,
+                        size: 40.sp,
+                      );
+                    }
+                  },
+                ),
+                onPressed: () async {
+                  await controller.qrViewController?.toggleFlash();
+                  controller.update(); // refresh UI (since you use GetBuilder)
+                },
+              ),
               Spacer(),
-              // Expanded(
-              //   flex: 1,
-              //   child: Center(
-              //     // Wrap the part of the UI that needs to be rebuilt with GetBuilder
-              //     child: GetBuilder<ScanQrCodeController>(
-              //       builder: (controller) {
-              //         return (controller.result != null)
-              //             ? Text(
-              //                 'Barcode Type: ${controller.result!.format}  Data: ${controller.result!.code}',
-              //                 style: TextStyle(color: kWhite),
-              //               )
-              //             : const Text('Scan a code');
-              //       },
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         );
