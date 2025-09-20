@@ -73,13 +73,13 @@ class ScanQrCodeView extends GetView<ScanQrCodeController> {
                     if (snapshot.data == true) {
                       return Icon(
                         Icons.flashlight_on,
-                        color: Colors.white,
+                        color: kWhite,
                         size: 40.sp,
                       );
                     } else {
                       return Icon(
                         Icons.flashlight_off,
-                        color: Colors.white,
+                        color: kWhite,
                         size: 40.sp,
                       );
                     }
