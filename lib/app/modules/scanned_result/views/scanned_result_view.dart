@@ -29,7 +29,6 @@ class ScannedResultView extends GetView<ScannedResultController> {
         } else if (controller.result == null) {
           return Scaffold(body: Center(child: Text("no data")));
         } else {
-          
           return Scaffold(
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
@@ -61,7 +60,7 @@ class ScannedResultView extends GetView<ScannedResultController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 8.h),
+                            SizedBox(height: 10.h),
                             Row(
                               children: [
                                 SizedBox(
@@ -208,51 +207,8 @@ class ScannedResultView extends GetView<ScannedResultController> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: Get.height * 0.01),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: Get.width * .22,
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                      Get.width * 0.1,
-                                      0,
-                                      0,
-                                      0,
-                                    ),
-                                    child: Text(
-                                      "Email ",
-                                      style: TextStyle(
-                                        fontFamily: "Inter",
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.w700,
-                                        color: kBlack,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  ": ",
-                                  style: TextStyle(
-                                    fontFamily: "Inter",
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: kBlack,
-                                  ),
-                                ),
-                                Text(
-                                  scannedData ?? '',
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    fontFamily: "Inter",
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: kBlack,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 8.h),
+
+                            SizedBox(height: 10.h),
                           ],
                         ),
                       ),
