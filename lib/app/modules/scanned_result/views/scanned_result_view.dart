@@ -15,7 +15,7 @@ class ScannedResultView extends GetView<ScannedResultController> {
   const ScannedResultView({super.key});
   @override
   Widget build(BuildContext context) {
-    final scannedData = Get.arguments as String?;
+    final scannedData = Get.arguments as List?;
     Get.put(ScannedResultController());
     log(" recieved from argument $scannedData");
     return GetBuilder<ScannedResultController>(

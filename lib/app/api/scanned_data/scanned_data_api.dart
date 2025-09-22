@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:qr_code_scanner/app/models/scanned_results/scanned_result.dart';
 
 class ScannedDataApi {
-  Future<ScannedResult?> getScannedTicket({required String email}) async {
+  Future<ScannedResult?> getScannedTicket({required List uniqueIds}) async {
     final url = Uri.parse(
       "https://charismauk.com/api/attendance/mark-attended",
     );
@@ -16,11 +16,11 @@ class ScannedDataApi {
       'Access-token': anAccessToken,
       'Content-Type': 'application/json',
     };
-    final body = jsonEncode({"mail": email});
+    final body = jsonEncode({"unique_ids": uniqueIds});
     try {
       final response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
-        log("Status code ---${response.body.toString()}");
+        // log("Status code ---${response.body.toString()}");
         return scannedResultFromJson(response.body);
       } else {
         log("Status code ---${response.statusCode.toString()}");

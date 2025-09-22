@@ -13,10 +13,10 @@ class ScannedResultController extends GetxController {
 
   @override
   void onInit() async {
-    final email = Get.arguments as String?;
-    if (email != null) {
-      log("recieved in controller $email");
-      await getScannedData(email: email);
+    final uniqueIds = Get.arguments as List?;
+    if (uniqueIds != null) {
+      log("recieved in controller $uniqueIds");
+      await getScannedData(uniqueIds: uniqueIds);
       // update();
     }
 
@@ -33,12 +33,12 @@ class ScannedResultController extends GetxController {
     super.onClose();
   }
 
-  Future<void> getScannedData({required String email}) async {
+  Future<void> getScannedData({required List uniqueIds}) async {
     final values = ScannedDataApi();
     isLoading = true;
     update();
     try {
-      final getData = await values.getScannedTicket(email: email);
+      final getData = await values.getScannedTicket(uniqueIds: uniqueIds);
       if (getData != null) {
         isLoading = false;
         result = getData;
@@ -58,19 +58,6 @@ class ScannedResultController extends GetxController {
             );
           });
         }
-
-        // if (result?.success == false) {
-        //   Get.snackbar(
-        //     "Error",
-        //     result!.data?.message ?? "",
-        //     backgroundColor: kRed,
-        //     colorText: kWhite,
-        //     snackPosition: SnackPosition.BOTTOM,
-        //     duration: Duration(seconds: 3),
-        //   );
-        // } else if (result?.success == true) {
-
-        // }
       }
     } catch (e) {
       log(" ${e.toString()}");
