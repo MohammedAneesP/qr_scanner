@@ -12,7 +12,8 @@ import 'package:qr_code_scanner/app/routes/app_pages.dart';
 import '../controllers/scanned_result_controller.dart';
 
 class ScannedResultView extends GetView<ScannedResultController> {
-  const ScannedResultView({super.key});
+  ScannedResultView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final scannedData = Get.arguments as List?;
@@ -29,6 +30,12 @@ class ScannedResultView extends GetView<ScannedResultController> {
         } else if (controller.result == null) {
           return Scaffold(body: Center(child: Text("no data")));
         } else {
+          String apiResponse = controller.result?.data?.message ?? "";
+          String? displayMessage = "";
+
+          if (apiResponse.isNotEmpty) {
+            displayMessage = apiResponse.replaceAll("attendee(s)", "attendees");
+          }
           return Scaffold(
             body: Padding(
               padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07),
@@ -63,23 +70,20 @@ class ScannedResultView extends GetView<ScannedResultController> {
                             SizedBox(height: 10.h),
                             Row(
                               children: [
-                                SizedBox(
-                                  width: Get.width * .22,
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                      Get.width * 0.017,
-                                      0,
-                                      0,
-                                      0,
-                                    ),
-                                    child: Text(
-                                      "Ticket IDs",
-                                      style: TextStyle(
-                                        fontFamily: "Inter",
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.w700,
-                                        color: kBlack,
-                                      ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                    Get.width * 0.038,
+                                    0,
+                                    0,
+                                    0,
+                                  ),
+                                  child: Text(
+                                    "Ticket ID ",
+                                    style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: kBlack,
                                     ),
                                   ),
                                 ),
@@ -108,23 +112,20 @@ class ScannedResultView extends GetView<ScannedResultController> {
                             SizedBox(height: Get.height * 0.01),
                             Row(
                               children: [
-                                SizedBox(
-                                  width: Get.width * .22,
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                      Get.width * 0.095,
-                                      0,
-                                      0,
-                                      0,
-                                    ),
-                                    child: Text(
-                                      "Name",
-                                      style: TextStyle(
-                                        fontFamily: "Inter",
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.w700,
-                                        color: kBlack,
-                                      ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                    Get.width * 0.095,
+                                    0,
+                                    0,
+                                    0,
+                                  ),
+                                  child: Text(
+                                    "Name ",
+                                    style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: kBlack,
                                     ),
                                   ),
                                 ),
@@ -319,6 +320,27 @@ class ScannedResultView extends GetView<ScannedResultController> {
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w700,
                         color: kWhite,
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+
+                  Container(
+                    width: Get.width,
+                    height: Get.height * 0.07,
+                    decoration: BoxDecoration(
+                      color: controller.result!.success! ? kGreen : kRed,
+                      borderRadius: BorderRadius.all(Radius.circular(20.r)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        displayMessage.trim().isNotEmpty ? displayMessage : "",
+                        style: TextStyle(
+                          fontFamily: "Inter",
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                          color: kWhite,
+                        ),
                       ),
                     ),
                   ),

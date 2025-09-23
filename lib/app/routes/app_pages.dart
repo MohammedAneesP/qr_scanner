@@ -40,7 +40,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SCANNED_RESULT,
-      page: () => const ScannedResultView(),
+      page: () =>  ScannedResultView(),
       binding: ScannedResultBinding(),
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 400),

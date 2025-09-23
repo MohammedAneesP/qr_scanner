@@ -16,7 +16,7 @@ class ScannedDataApi {
       'Access-token': anAccessToken,
       'Content-Type': 'application/json',
     };
-    final body = jsonEncode({"unique_ids": uniqueIds});
+    final body = jsonEncode({"unique_ids": ["CMA001502","CMA001611"]});
     try {
       final response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
